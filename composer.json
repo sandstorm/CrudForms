@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Sandstorm\\CrudForms": "Classes"
+            "Sandstorm\\CrudForms\\": "Classes"
         }
     },
     "conflict": {
