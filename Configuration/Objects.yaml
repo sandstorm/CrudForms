@@ -1,0 +1,4 @@
+Sandstorm\CrudForms\View\ExtendedTemplateView:
+  properties:
+    renderingContext:
+      object: TYPO3\Fluid\Core\Rendering\RenderingContext

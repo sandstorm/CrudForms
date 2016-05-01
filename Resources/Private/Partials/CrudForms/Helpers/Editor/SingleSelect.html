@@ -1,0 +1,11 @@
+{namespace crud=Sandstorm\CrudForms\ViewHelpers}
+
+<f:if condition="{field.repository}">
+    <f:then>
+        <f:form.select options="{crud:internal.findObjectsForListing(repository: field.repository)}" optionLabelField="label" property="{field.property}" id="{field.property}"/>
+    </f:then>
+    <f:else>
+        <f:form.select options="{field.options}" property="{field.property}"/>
+    </f:else>
+</f:if>
+

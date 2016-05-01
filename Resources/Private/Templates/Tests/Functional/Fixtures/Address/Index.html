@@ -1,0 +1,6 @@
+{namespace crud=Sandstorm\CrudForms\ViewHelpers}
+<f:link.action class="button" action="new">
+    Create new
+</f:link.action>
+
+<f:render partial="CrudForms/Listing" arguments="{crud:listDefinition(objects: objects, model: model)}" />

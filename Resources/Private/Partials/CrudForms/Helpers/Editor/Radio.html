@@ -1,0 +1,7 @@
+{namespace crud=Sandstorm\CrudForms\ViewHelpers}
+
+<f:for each="{field.options}" as="option">
+    <br />
+        <f:form.radio property="{field.property}" value="{option.value}" />
+        {option.label}
+</f:for>

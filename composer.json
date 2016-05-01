@@ -1,0 +1,28 @@
+{
+    "name": "sandstorm/crudforms",
+    "type": "typo3-flow-package",
+    "homepage": "https://github.com/sandstorm/Heroku",
+    "license": "MIT",
+    "require": {
+        "typo3/flow": "*"
+    },
+    "authors": [
+        {
+            "name": "Sebastian Kurfuerst",
+            "homepage": "http://www.sandstorm-media.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+    	"issues": "https://github.com/sandstorm/CrudForms/issues",
+    	"source": "https://github.com/sandstorm/CrudForms"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sandstorm\\CrudForms": "Classes"
+        }
+    },
+    "conflict": {
+    	"typo3/flow": "<=2.3"
+    }
+}

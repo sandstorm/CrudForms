@@ -1,0 +1,10 @@
+{namespace crud=Sandstorm\CrudForms\ViewHelpers}
+
+<f:if condition="{field.readonly}">
+    <f:then>
+        {value -> f:format.date()}
+    </f:then>
+    <f:else>
+        <crud:internal.form.date property="{field.property}" id="{field.property}" readonly="{field.readonly}"/>
+    </f:else>
+</f:if>

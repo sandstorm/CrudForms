@@ -1,0 +1,16 @@
+<![CDATA[<f:layout name="Default"/>
+
+<f:section name="Title">]]>{shortModelClassName}<![CDATA[</f:section>
+
+<f:section name="Content">
+
+    <f:flashMessages class="flashmessages"/>
+
+    <f:link.action class="button" action="new">
+        <i class="fa fa-plus"></i>]]> create {shortModelClassName}<![CDATA[
+    </f:link.action>
+
+    <f:render partial="CrudForms/Listing" arguments="{crud:listDefinition(objects: objects, model: model)}" />
+
+</f:section>
+]]>

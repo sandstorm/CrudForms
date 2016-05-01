@@ -1,0 +1,17 @@
+.has-error {
+    label {
+        color: $form-label-color-invalid;
+    }
+
+    input, textarea {
+        @include form-input-error;
+    }
+
+    .errors {
+        margin-top: $form-spacing * -0.5;
+        margin-bottom: $form-spacing;
+        font-size: $input-error-font-size;
+        font-weight: $input-error-font-weight;
+        color: $input-error-color;
+    }
+}

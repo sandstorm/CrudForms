@@ -1,0 +1,43 @@
+{namespace crud=Sandstorm\CrudForms\ViewHelpers}
+
+<table>
+    <thead>
+    <tr>
+        <f:for each="{fields}" as="field">
+            <th>{field.label}</th>
+        </f:for>
+        <th>&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <f:for each="{objects}" key="index" as="singleObject">
+        <tr>
+            <f:for each="{fields}" as="field">
+                <td>
+                    <f:render partial="CrudForms/Helpers/ListingType/{singleObject -> crud:internal.objectAccess(property: field.property) -> crud:internal.resolvePartialNameBasedOnType() -> f:format.case(mode: 'capital')}" arguments="{value: '{singleObject -> crud:internal.objectAccess(property: field.property)}'}"/>
+                </td>
+            </f:for>
+            <td class="actions">
+                <f:if condition="{crud:internal.actionExists(action: 'edit')}">
+                    <f:link.action action="edit" arguments="{object: singleObject}" class="button crudforms-edit" title="Edit">
+                        <span><f:translate package="Sandstorm.CrudForms" id="edit" /></span>
+                    </f:link.action>
+                </f:if>
+
+                <f:if condition="{crud:internal.actionExists(action: 'remove')}">
+                    <f:form action="remove" arguments="{object: singleObject}">
+                        <button class="button crudforms-delete" type="submit">
+                            <span><f:translate package="Sandstorm.CrudForms" id="delete" /></span>
+                        </button>
+                    </f:form>
+                </f:if>
+
+                <crud:internal.optionalPartial>
+                    <f:render partial="CrudForms/Actions/{singleObject -> crud:internal.resolvePartialNameBasedOnType() -> f:format.case(mode: 'capital')}" arguments="{object: singleObject}"/>
+                </crud:internal.optionalPartial>
+            </td>
+        </tr>
+    </f:for>
+    </tbody>
+</table>
+

@@ -1,0 +1,10 @@
+{namespace crud=Sandstorm\CrudForms\ViewHelpers}
+
+<f:if condition="{value}">
+    <f:then>
+        <a href="{f:uri.resource(resource: value)}">Download</a>
+    </f:then>
+    <f:else>
+        Not existing
+    </f:else>
+</f:if>

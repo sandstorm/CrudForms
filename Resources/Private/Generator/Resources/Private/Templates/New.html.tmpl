@@ -1,0 +1,17 @@
+<![CDATA[<f:layout name="Default"/>
+
+<f:section name="Title">]]>{shortModelClassName}<![CDATA[</f:section>
+
+<f:section name="Content">
+
+    <f:flashMessages class="flashmessages"/>
+
+    <f:form action="create" objectName="object" object="{object}" enctype="multipart/form-data">
+        <f:render partial="CrudForms/Form" arguments="{crud:formDefinition(object: object, model: model)}" />
+
+        <f:link.action action="index" class="button">Cancel</f:link.action>
+        <f:form.submit value="create]]> {shortModelClassName}<![CDATA[" class="button" />
+    </f:form>
+
+</f:section>
+]]>
