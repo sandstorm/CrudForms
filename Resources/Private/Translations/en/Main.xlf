@@ -2,11 +2,23 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file original="" product-name="Sandstorm.CrudForms" source-language="en" datatype="plaintext">
 		<body>
+			<trans-unit id="edit" xml:space="preserve">
+				<source>Edit</source>
+			</trans-unit>
 			<trans-unit id="delete" xml:space="preserve">
 				<source>Delete</source>
 			</trans-unit>
-			<trans-unit id="edit" xml:space="preserve">
-				<source>Edit</source>
+			<trans-unit id="delete.confirmation.header" xml:space="preserve">
+				<source>Really delete this entry?</source>
+			</trans-unit>
+			<trans-unit id="delete.confirmation.body" xml:space="preserve">
+				<source>This entry will be removed and cannot be recovered. Do you want to continue?</source>
+			</trans-unit>
+			<trans-unit id="delete.confirmation.confirm" xml:space="preserve">
+				<source>Confirm deletion</source>
+			</trans-unit>
+			<trans-unit id="cancel" xml:space="preserve">
+				<source>Cancel</source>
 			</trans-unit>
 		</body>
 	</file>

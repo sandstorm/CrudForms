@@ -1,0 +1,80 @@
+{namespace crud=Sandstorm\CrudForms\ViewHelpers}
+
+<div class="neos-row-fluid">
+	<table class="neos-table">
+		<thead>
+		<tr>
+			<f:for each="{fields}" as="field">
+				<th>{field.label}</th>
+			</f:for>
+			<th>&nbsp;</th>
+		</tr>
+		</thead>
+		<tbody>
+		<f:for each="{objects}" key="index" as="singleObject">
+			<tr>
+				<f:for each="{fields}" as="field">
+					<td>
+						<f:render
+							partial="CrudForms/Helpers/ListingType/{singleObject -> crud:internal.objectAccess(property: field.property) -> crud:internal.resolvePartialNameBasedOnType() -> f:format.case(mode: 'capital')}"
+							arguments="{value: '{singleObject -> crud:internal.objectAccess(property: field.property)}'}"/>
+					</td>
+				</f:for>
+				<td class="neos-action">
+					<div class="neos-pull-right">
+						<f:if condition="{crud:internal.actionExists(action: 'edit')}">
+							<f:link.action action="edit" arguments="{object: singleObject}" class="neos-button neos-button-primary"
+										   title="{f:translate(package:'Sandstorm.CrudForms', id:'edit')}" additionalAttributes="{data-neos-toggle: 'tooltip'}">
+								<i class="icon-pencil icon-white"></i>
+							</f:link.action>
+						</f:if>
+
+						<f:if condition="{crud:internal.actionExists(action: 'remove')}">
+							<button class="neos-button neos-button-danger" title="{f:translate(package:'Sandstorm.CrudForms', id:'delete')}" data-toggle="modal"
+									href="#recipient-{index}" data-neos-toggle="tooltip">
+								<i class="icon-trash icon-white"></i>
+							</button>
+							<div class="neos-hide" id="recipient-{index}">
+								<div class="neos-modal-centered">
+									<div class="neos-modal-content">
+										<div class="neos-modal-header">
+											<button type="button" class="neos-close neos-button" data-dismiss="modal"></button>
+											<div class="neos-header">
+												<f:translate package="Sandstorm.CrudForms" id="delete.confirmation.header"/>
+											</div>
+											<div>
+												<div class="neos-subheader">
+													<p>
+														<f:translate package="Sandstorm.CrudForms" id="delete.confirmation.body"/>
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="neos-modal-footer">
+											<a href="#" class="neos-button" data-dismiss="modal">
+												<f:translate package="Sandstorm.CrudForms" id="cancel"/>
+											</a>
+											<f:form action="remove" arguments="{object: singleObject}" class="neos-inline">
+												<button type="submit" class="neos-button neos-button-danger">
+													<f:translate package="Sandstorm.CrudForms" id="delete.confirmation.confirm"/>
+												</button>
+											</f:form>
+										</div>
+									</div>
+								</div>
+								<div class="neos-modal-backdrop neos-in"></div>
+							</div>
+						</f:if>
+
+						<crud:internal.optionalPartial>
+							<f:render partial="CrudForms/Actions/{singleObject -> crud:internal.resolvePartialNameBasedOnType() -> f:format.case(mode: 'capital')}"
+									  arguments="{object: singleObject}"/>
+						</crud:internal.optionalPartial>
+					</div>
+				</td>
+			</tr>
+		</f:for>
+		</tbody>
+	</table>
+</div>
+
