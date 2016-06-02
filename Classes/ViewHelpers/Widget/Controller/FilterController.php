@@ -32,10 +32,12 @@ class FilterController extends AbstractWidgetController
      */
     public function indexAction($filterValue = '')
     {
+        $filterValue = trim($filterValue);
+        
         $query = clone $this->objects->getQuery();
         $constraintSoFar = $query->getConstraint();
 
-        $filterConstraint = $query->like($this->filterProperty, trim($filterValue) . '%');
+        $filterConstraint = $query->like($this->filterProperty, $filterValue . '%');
 
         if ($constraintSoFar) {
             $query->matching($query->logicalAnd($constraintSoFar, $filterConstraint));
