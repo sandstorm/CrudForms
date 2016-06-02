@@ -35,7 +35,7 @@ class FilterController extends AbstractWidgetController
         $query = clone $this->objects->getQuery();
         $constraintSoFar = $query->getConstraint();
 
-        $filterConstraint = $query->like($this->filterProperty, $filterValue . '%');
+        $filterConstraint = $query->like($this->filterProperty, trim($filterValue) . '%');
 
         if ($constraintSoFar) {
             $query->matching($query->logicalAnd($constraintSoFar, $filterConstraint));
