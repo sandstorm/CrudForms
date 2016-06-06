@@ -5,19 +5,19 @@
     "keywords": ["Neos", "Flow", "CRUD", "Forms", "Controller", "Lists", "Model"],
     "homepage": "https://github.com/sandstorm/CrudForms",
     "license": "MIT",
-    "require": {
-        "typo3/flow": "~3.0"
-    },
     "authors": [
         {
             "name": "Sebastian Kurfuerst",
-            "homepage": "http://www.sandstorm-media.de",
+            "homepage": "https://www.sandstorm.de",
             "role": "Developer"
         }
     ],
     "support": {
     	"issues": "https://github.com/sandstorm/CrudForms/issues",
     	"source": "https://github.com/sandstorm/CrudForms"
+    },
+    "require": {
+        "typo3/flow": "~3.0"
     },
     "autoload": {
         "psr-4": {
