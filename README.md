@@ -1,6 +1,6 @@
 # Sandstorm CrudForms
 
-Create easy CRUD forms for Domain Models.
+Create easy CRUD forms for Domain Models in Flow and Neos CMS.
 
 Features:
 - Support for Zurb Foundation 6
@@ -11,8 +11,10 @@ Features:
 - extensible for other frameworks
 
 ## Usage (Kickstart)
+TODO: Document
 
 ## Usage (Customization)
+TODO: Document
 
 ## Public API
 
@@ -77,6 +79,6 @@ class AddressController extends ActionController
 
 ## Internal API
 
-## License & Copyright
+# License & Copyright
 
 MIT-Licensed, (c) Sandstorm Media GmbH 2016

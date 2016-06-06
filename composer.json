@@ -1,10 +1,12 @@
 {
     "name": "sandstorm/crudforms",
+    "description": "Create easy CRUD forms for Domain Models in Flow and Neos CMS",
     "type": "typo3-flow-package",
-    "homepage": "https://github.com/sandstorm/Heroku",
+    "keywords": ["Neos", "Flow", "CRUD", "Forms", "Controller", "Lists", "Model"],
+    "homepage": "https://github.com/sandstorm/CrudForms",
     "license": "MIT",
     "require": {
-        "typo3/flow": "*"
+        "typo3/flow": "~3.0"
     },
     "authors": [
         {
