@@ -25,7 +25,7 @@
         "source": "https://github.com/sandstorm/CrudForms"
     },
     "require": {
-        "typo3/flow": "~3.0"
+        "neos/flow": "~4.0"
     },
     "autoload": {
         "psr-4": {
@@ -33,7 +33,7 @@
         }
     },
     "conflict": {
-        "typo3/flow": "<=2.3"
+        "typo3/flow": "<=3.3"
     },
     "extra": {
         "applied-flow-migrations": [
