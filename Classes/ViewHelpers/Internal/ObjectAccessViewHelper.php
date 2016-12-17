@@ -2,7 +2,7 @@
 
 namespace Sandstorm\CrudForms\ViewHelpers\Internal;
 
-use Neos\Flow\Reflection\ObjectAccess;
+use Neos\Utility\ObjectAccess;
 use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**

@@ -8,7 +8,7 @@ use Sandstorm\CrudForms\Exception\MissingModelTypeException;
 use Sandstorm\CrudForms\FieldGeneratorInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Reflection\ReflectionService;
-use Neos\Flow\Utility\PositionalArraySorter;
+use Neos\Utility\PositionalArraySorter;
 use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 abstract class AbstractDefinitionViewHelper extends AbstractViewHelper

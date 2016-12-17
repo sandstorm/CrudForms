@@ -3,7 +3,7 @@ namespace Sandstorm\CrudForms\Property\TypeConverter;
 
 
 use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Error\Error;
+use Neos\Error\Messages\Error;
 use Neos\Flow\Property\TypeConverter\DateTimeConverter;
 
 /**
