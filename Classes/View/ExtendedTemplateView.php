@@ -7,11 +7,11 @@ use Neos\FluidAdaptor\View\TemplateView;
 
 class ExtendedTemplateView extends TemplateView
 {
-    protected function getPartialRootPaths()
+    public function __construct(array $options)
     {
-        $partialRootPaths = parent::getPartialRootPaths();
+        parent::__construct($options);
+        $partialRootPaths = $this->getRenderingContext()->getTemplatePaths()->getPartialRootPaths();
         $partialRootPaths[] = 'resource://Sandstorm.CrudForms/Private/Partials/';
-
-        return $partialRootPaths;
+        $this->getRenderingContext()->getTemplatePaths()->setPartialRootPaths($partialRootPaths);
     }
 }

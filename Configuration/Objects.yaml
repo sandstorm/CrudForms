@@ -1,4 +1,0 @@
-Sandstorm\CrudForms\View\ExtendedTemplateView:
-  properties:
-    renderingContext:
-      object: Neos\FluidAdaptor\Core\Rendering\RenderingContext

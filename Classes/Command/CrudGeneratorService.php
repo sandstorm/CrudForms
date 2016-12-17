@@ -133,9 +133,10 @@ class CrudGeneratorService
     private function getNamespaceBaseDirectory($packageKey)
     {
         $package = $this->packageManager->getPackage($packageKey);
-        if ($package->getAutoloadType() === Package::AUTOLOADER_TYPE_PSR4) {
+
+        if (in_array('psr-4', $package->getAutoloadTypes())) {
             // WORKAROUND to support PSR4 properly
-            return Files::getNormalizedPath($package->getClassesPath());
+            return Files::getNormalizedPath($package->getPackagePath() . '/Classes/');
         } else {
             return $package->getClassesNamespaceEntryPath();
         }
