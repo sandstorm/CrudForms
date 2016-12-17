@@ -3,7 +3,7 @@
 namespace Sandstorm\CrudForms\View;
 
 
-use TYPO3\Fluid\View\TemplateView;
+use Neos\FluidAdaptor\View\TemplateView;
 
 class ExtendedTemplateView extends TemplateView
 {

@@ -3,7 +3,7 @@ namespace Sandstorm\CrudForms\ViewHelpers\Widget\Controller;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\QueryResultInterface;
-use TYPO3\Fluid\Core\Widget\AbstractWidgetController;
+use Neos\FluidAdaptor\Core\Widget\AbstractWidgetController;
 
 class FilterController extends AbstractWidgetController
 {

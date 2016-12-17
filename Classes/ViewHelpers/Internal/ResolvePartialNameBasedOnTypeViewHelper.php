@@ -3,7 +3,7 @@
 namespace Sandstorm\CrudForms\ViewHelpers\Internal;
 
 use Neos\Utility\TypeHandling;
-use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
+use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
 
 class ResolvePartialNameBasedOnTypeViewHelper extends AbstractViewHelper
 {

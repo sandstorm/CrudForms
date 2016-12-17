@@ -4,8 +4,8 @@ namespace Sandstorm\CrudForms\ViewHelpers\Internal\Form;
 
 use Neos\Utility\ObjectAccess;
 use Neos\Utility\TypeHandling;
-use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\Fluid\ViewHelpers\Form\TextfieldViewHelper;
+use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
+use Neos\FluidAdaptor\ViewHelpers\Form\TextfieldViewHelper;
 
 class DateViewHelper extends TextfieldViewHelper
 {

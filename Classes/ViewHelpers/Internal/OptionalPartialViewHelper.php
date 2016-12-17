@@ -3,8 +3,8 @@
 namespace Sandstorm\CrudForms\ViewHelpers\Internal;
 
 use Neos\Flow\Annotations as Flow;
-use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\Fluid\View\Exception\InvalidTemplateResourceException;
+use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
+use Neos\FluidAdaptor\View\Exception\InvalidTemplateResourceException;
 
 class OptionalPartialViewHelper extends AbstractViewHelper
 {

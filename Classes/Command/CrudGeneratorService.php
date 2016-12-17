@@ -5,7 +5,7 @@ namespace Sandstorm\CrudForms\Command;
 
 use Neos\Flow\Package\Package;
 use Neos\Utility\Files;
-use TYPO3\Fluid\View\StandaloneView;
+use Neos\FluidAdaptor\View\StandaloneView;
 use Neos\Flow\Annotations as Flow;
 
 class CrudGeneratorService

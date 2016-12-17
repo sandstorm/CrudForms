@@ -3,7 +3,7 @@ namespace Sandstorm\CrudForms\ViewHelpers\Widget;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\QueryResultInterface;
-use TYPO3\Fluid\Core\Widget\AbstractWidgetViewHelper;
+use Neos\FluidAdaptor\Core\Widget\AbstractWidgetViewHelper;
 
 /**
  * This ViewHelper renders a Filter for a list of objects.
