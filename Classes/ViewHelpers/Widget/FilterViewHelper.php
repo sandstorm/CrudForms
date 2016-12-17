@@ -1,8 +1,8 @@
 <?php
 namespace Sandstorm\CrudForms\ViewHelpers\Widget;
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Persistence\QueryResultInterface;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Persistence\QueryResultInterface;
 use TYPO3\Fluid\Core\Widget\AbstractWidgetViewHelper;
 
 /**

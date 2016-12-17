@@ -3,10 +3,10 @@
 namespace Sandstorm\CrudForms\Command;
 
 
-use TYPO3\Flow\Package\Package;
-use TYPO3\Flow\Utility\Files;
+use Neos\Flow\Package\Package;
+use Neos\Flow\Utility\Files;
 use TYPO3\Fluid\View\StandaloneView;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 class CrudGeneratorService
 {
@@ -14,7 +14,7 @@ class CrudGeneratorService
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Package\PackageManagerInterface
+     * @var \Neos\Flow\Package\PackageManagerInterface
      */
     protected $packageManager;
 
@@ -110,7 +110,7 @@ class CrudGeneratorService
     protected function generateFile($targetPathAndFilename, $fileContent, $force = FALSE)
     {
         if (!is_dir(dirname($targetPathAndFilename))) {
-            \TYPO3\Flow\Utility\Files::createDirectoryRecursively(dirname($targetPathAndFilename));
+            \Neos\Flow\Utility\Files::createDirectoryRecursively(dirname($targetPathAndFilename));
         }
 
         if (substr($targetPathAndFilename, 0, 11) === 'resource://') {

@@ -2,7 +2,7 @@
 
 namespace Sandstorm\CrudForms\ViewHelpers;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 class FormDefinitionViewHelper extends AbstractDefinitionViewHelper
 {

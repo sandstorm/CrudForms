@@ -36,7 +36,7 @@ trait BaseControllerTrait
     }
 
 
-    protected function initializeView(\TYPO3\Flow\Mvc\View\ViewInterface $view)
+    protected function initializeView(\Neos\Flow\Mvc\View\ViewInterface $view)
     {
         $view->assign('model', $this->getModelType());
     }

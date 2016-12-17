@@ -11,13 +11,13 @@ namespace Sandstorm\CrudForms\Tests\Functional;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\Flow\Http\Request;
-use TYPO3\Flow\Http\Uri;
+use Neos\Flow\Http\Request;
+use Neos\Flow\Http\Uri;
 
 /**
  * Functional tests for the ActionController
  */
-class AddressControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
+class AddressControllerTest extends \Neos\Flow\Tests\FunctionalTestCase {
 
 	/**
 	 * @var boolean

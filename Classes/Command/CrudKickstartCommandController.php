@@ -1,8 +1,8 @@
 <?php
 namespace Sandstorm\CrudForms\Command;
 
-use TYPO3\Flow\Cli\CommandController;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Cli\CommandController;
+use Neos\Flow\Annotations as Flow;
 
 class CrudKickstartCommandController extends CommandController
 {
@@ -10,7 +10,7 @@ class CrudKickstartCommandController extends CommandController
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Package\PackageManagerInterface
+     * @var \Neos\Flow\Package\PackageManagerInterface
      */
     protected $packageManager;
 

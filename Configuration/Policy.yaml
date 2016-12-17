@@ -1,9 +1,9 @@
 privilegeTargets:
-  'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
     'Sandstorm.CrudForms:Widget.Filter':
       matcher: 'method(Sandstorm\CrudForms\ViewHelpers\Widget\Controller\FilterController->(?!initialize).*Action())'
 roles:
-  'TYPO3.Flow:Everybody':
+  'Neos.Flow:Everybody':
     privileges:
       -
         privilegeTarget: 'Sandstorm.CrudForms:Widget.Filter'

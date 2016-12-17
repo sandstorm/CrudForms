@@ -2,8 +2,8 @@
 
 namespace Sandstorm\CrudForms\ViewHelpers\Internal\Form;
 
-use TYPO3\Flow\Reflection\ObjectAccess;
-use TYPO3\Flow\Utility\TypeHandling;
+use Neos\Flow\Reflection\ObjectAccess;
+use Neos\Flow\Utility\TypeHandling;
 use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\Fluid\ViewHelpers\Form\TextfieldViewHelper;
 

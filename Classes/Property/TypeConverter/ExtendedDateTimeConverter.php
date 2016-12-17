@@ -2,9 +2,9 @@
 namespace Sandstorm\CrudForms\Property\TypeConverter;
 
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Error\Error;
-use TYPO3\Flow\Property\TypeConverter\DateTimeConverter;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Error\Error;
+use Neos\Flow\Property\TypeConverter\DateTimeConverter;
 
 /**
  * @Flow\Scope("singleton")
@@ -17,7 +17,7 @@ class ExtendedDateTimeConverter extends DateTimeConverter
      */
     protected $priority = 50;
 
-    public function convertFrom($source, $targetType, array $convertedChildProperties = array(), \TYPO3\Flow\Property\PropertyMappingConfigurationInterface $configuration = null)
+    public function convertFrom($source, $targetType, array $convertedChildProperties = array(), \Neos\Flow\Property\PropertyMappingConfigurationInterface $configuration = null)
     {
         if (isset($source['dateFormat']) && $source['dateFormat'] === 'MULTIPLE') {
             $source['dateFormat'] = 'Y-m-d';

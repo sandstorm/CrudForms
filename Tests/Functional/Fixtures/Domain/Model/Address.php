@@ -2,7 +2,7 @@
 namespace Sandstorm\CrudForms\Tests\Functional\Fixtures\Domain\Model;
 
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * @Flow\Entity
