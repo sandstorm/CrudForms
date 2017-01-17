@@ -2,14 +2,36 @@
 namespace Sandstorm\CrudForms\Controller;
 
 use Sandstorm\CrudForms\Exception\MissingModelTypeException;
+use Sandstorm\CrudForms\View\ExtendedTemplateView;
+use TYPO3\Flow\Reflection\ObjectAccess;
+use TYPO3\Fluid\View\TemplateView;
+use TYPO3\TypoScript\View\TypoScriptView;
 
 trait BaseControllerTrait
 {
 
     protected function resolveView()
     {
-        $this->defaultViewObjectName = 'Sandstorm\CrudForms\View\ExtendedTemplateView';
-        return parent::resolveView();
+        // DEFAULT case for Flow Applications using Fluid; or for usage inside Neos plugins.
+        if ($this->defaultViewObjectName === TemplateView::class) {
+            $this->defaultViewObjectName = 'Sandstorm\CrudForms\View\ExtendedTemplateView';
+        }
+
+        $result = parent::resolveView();
+
+        // USE CASE: Fusion & Flow are used (standalone) AND no Fusion path exists for the controller/action, so the Fallback
+        //           is triggered.
+        //
+        // in case the Fusion view is used *AND* the fallback view is a normal TemplateView, we replace it
+        // with the extended TemplateView as well.
+        if ($result instanceof TypoScriptView) {
+            $fallbackView = ObjectAccess::getProperty($result, 'fallbackView', true);
+            if ($fallbackView instanceof TemplateView) {
+                ObjectAccess::setProperty($result, 'fallbackView', new ExtendedTemplateView(), true);
+            }
+        }
+
+        return $result;
     }
 
     protected function registerObjectParameter()

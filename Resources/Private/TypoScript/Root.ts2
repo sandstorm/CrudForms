@@ -1,0 +1,9 @@
+prototype(Sandstorm.CrudForms:Template) < prototype(TYPO3.TypoScript:Template) {
+    model = ${model}
+
+    // needed for listing
+    objects = ${objects}
+
+    // needed for single view
+    object = ${object}
+}

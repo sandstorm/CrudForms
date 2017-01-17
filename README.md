@@ -16,6 +16,35 @@ TODO: Document
 ## Usage (Customization)
 TODO: Document
 
+## Usage with Fusion as View (in Flow applications)
+
+**NOTE:** this case does NOT describe when using CrudForms in Neos as a Plugin or backend module. It describes
+          the case when using `\TYPO3\TypoScript\View\TypoScriptView` directly inside a Flow controller.
+
+Since version 1.0.1, this works as expected. You need to pass on `model`, `objects` and `object` from the Fusion
+context to the Fluid template:
+
+```
+index = TYPO3.TypoScript:Template {
+        model = ${model}
+
+        // needed for listing
+        objects = ${objects}
+
+        // needed for single view
+        object = ${object}
+}
+```
+
+Alternatively, you can include the default Fusion code from CrudForms and then instead use `Sandstorm.CrudForms:Template`
+which does this for you:
+
+```
+include: resource://Sandstorm.CrudForms/Private/TypoScript/Root.ts2
+
+index = Sandstorm.CrudForms:Template
+```
+
 ## Public API
 
 (is guaranteed to stay stable except for major version updates).
