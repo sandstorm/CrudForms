@@ -2,15 +2,15 @@
 
 namespace Sandstorm\CrudForms\Aspect;
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Aop\JoinPointInterface;
-use TYPO3\Fluid\View\Exception\InvalidTemplateResourceException;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Aop\JoinPointInterface;
+use Neos\FluidAdaptor\View\Exception\InvalidTemplateResourceException;
 
 /**
  * When using CrudForms in Fusion (NOT in a Neos Plugin); but directly Fusion & Flow; the partial path overriding
- * of ExtendedTemplateView is not used (as the View there is the TypoScriptView).
+ * of ExtendedTemplateView is not used (as the View there is the FusionView).
  *
- * The TypoScript TemplateImplementation uses the "Helpers\FluidView" class, which extends from StandaloneView.
+ * The Fusion TemplateImplementation uses the "Helpers\FluidView" class, which extends from StandaloneView.
  *
  * Here, we are monkey-patching the Helpers\FluidView class to re-implement the partial fallback:
  * - we are catching the InvalidTemplateResourceException in case a partial is not found.
@@ -25,7 +25,7 @@ class PartialFallbackInFusionTemplateImplementation
     /**
      * Logs calls and results of the authenticate() method of the Authentication Manager
      *
-     * @Flow\Around("method(TYPO3\TypoScript\TypoScriptObjects\Helpers\FluidView->getPartialPathAndFilename())")
+     * @Flow\Around("method(Neos\Fusion\FusionObjects\Helpers\FluidView->getPartialPathAndFilename())")
      * @param JoinPointInterface $joinPoint The current joinpoint
      * @return mixed The result of the target method if it has not been intercepted
      * @throws \Exception
@@ -34,7 +34,7 @@ class PartialFallbackInFusionTemplateImplementation
         try {
             return $joinPoint->getAdviceChain()->proceed($joinPoint);
         } catch (InvalidTemplateResourceException $e) {
-            /* @var $fluidView \TYPO3\TypoScript\TypoScriptObjects\Helpers\FluidView */
+            /* @var $fluidView \Neos\Fusion\FusionObjects\Helpers\FluidView */
             $fluidView = $joinPoint->getProxy();
 
             $partialRootPathBefore = $fluidView->getPartialRootPath();
