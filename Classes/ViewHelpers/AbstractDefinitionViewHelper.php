@@ -33,15 +33,14 @@ abstract class AbstractDefinitionViewHelper extends AbstractViewHelper
         if ($model === NULL) {
             throw new MissingModelTypeException('The "model" property has not been specified as parameter to the ViewHelper ' . get_class($this) . '.', 1452715128);
         }
-        $classSchema = $this->reflectionService->getClassSchema($model);
-        if ($classSchema === NULL) {
+        $propertyNames = $this->reflectionService->getClassPropertyNames($model);
+        if ($propertyNames === NULL) {
             throw new MissingModelTypeException('No class schema could be resolved for model ' . $model . '.', 1452715183);
         }
-        $classSchema->getProperties();
 
         $fields = [];
 
-        foreach ($classSchema->getProperties() as $propertyName => $propertyDefinition) {
+        foreach ($propertyNames as $propertyName) {
             if ($propertyName === 'Persistence_Object_Identifier') {
                 continue;
             }
