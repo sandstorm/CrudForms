@@ -1,4 +1,4 @@
-prototype(Sandstorm.CrudForms:Template) < prototype(TYPO3.TypoScript:Template) {
+prototype(Sandstorm.CrudForms:Template) < prototype(Neos.Fusion:Template) {
     model = ${model}
 
     // needed for listing

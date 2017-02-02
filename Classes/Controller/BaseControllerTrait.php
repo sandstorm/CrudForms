@@ -1,11 +1,11 @@
 <?php
 namespace Sandstorm\CrudForms\Controller;
 
+use Neos\FluidAdaptor\View\TemplateView;
+use Neos\Fusion\View\FusionView;
+use Neos\Utility\ObjectAccess;
 use Sandstorm\CrudForms\Exception\MissingModelTypeException;
 use Sandstorm\CrudForms\View\ExtendedTemplateView;
-use TYPO3\Flow\Reflection\ObjectAccess;
-use TYPO3\Fluid\View\TemplateView;
-use TYPO3\TypoScript\View\TypoScriptView;
 
 trait BaseControllerTrait
 {
@@ -24,7 +24,7 @@ trait BaseControllerTrait
         //
         // in case the Fusion view is used *AND* the fallback view is a normal TemplateView, we replace it
         // with the extended TemplateView as well.
-        if ($result instanceof TypoScriptView) {
+        if ($result instanceof FusionView) {
             $fallbackView = ObjectAccess::getProperty($result, 'fallbackView', true);
             if ($fallbackView instanceof TemplateView) {
                 ObjectAccess::setProperty($result, 'fallbackView', new ExtendedTemplateView(), true);
