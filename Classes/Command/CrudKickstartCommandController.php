@@ -29,7 +29,7 @@ class CrudKickstartCommandController extends CommandController
      * @param string $modelName The model class name. Either fully-qualified or assumed to be in $packageKey.
      * @param boolean $override override generated classes?
      * @return string
-     * @see typo3.kickstart:kickstart:commandcontroller
+     * @see neos.kickstart:kickstart:commandcontroller
      */
     public function crudControllerCommand($packageKey, $controllerName, $modelName, $overwrite = FALSE)
     {
