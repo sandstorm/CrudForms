@@ -12,6 +12,13 @@ class FindObjectsForListingViewHelper extends AbstractViewHelper
      */
     public function render($repository)
     {
-        return $this->objectManager->get($repository)->findAll();
+        if (strpos($repository, '::') === false) {
+            $repositoryName = $repository;
+            $methodName = 'findAll';
+        } else {
+            list($repositoryName, $methodName) = explode('::', $repository);
+        }
+
+        return $this->objectManager->get($repositoryName)->$methodName();
     }
 }
