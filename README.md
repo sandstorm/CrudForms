@@ -50,9 +50,9 @@ In your Model, annotate the field using the `@Crud\FormField` annotation, which 
 - `visibleInOverview`: if FALSE, hides the field from the listing.
 - `visibleInForm`: if FALSE, hides the field from the create and update forms.
 - `readonly`: if TRUE, only show the values, but do not make them editable.
-- `editor` configure a different editor for the forms; see below for a more detailed description.
-- `options`
-- `repository`
+- `editor`: configure a different editor for the forms; see below for a more detailed description.
+- `options`: specify option values for e.g. radio-buttons or drop-down lists
+- `repository`: specify a repository to retrieve option values from (format: full\repository\class\name[::methodName])
 
 ## hiding properties from listing and forms, sorting them, labeling them
 
