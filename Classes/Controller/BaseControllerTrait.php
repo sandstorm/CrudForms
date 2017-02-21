@@ -1,14 +1,28 @@
 <?php
 namespace Sandstorm\CrudForms\Controller;
 
+use Neos\Flow\Persistence\RepositoryInterface;
 use Neos\FluidAdaptor\View\TemplateView;
 use Neos\Fusion\View\FusionView;
 use Neos\Utility\ObjectAccess;
 use Sandstorm\CrudForms\Exception\MissingModelTypeException;
 use Sandstorm\CrudForms\View\ExtendedTemplateView;
+use Neos\Flow\Annotations as Flow;
 
 trait BaseControllerTrait
 {
+
+    /**
+     * @var \Neos\Flow\Reflection\ReflectionService
+     * @Flow\Inject
+     */
+    protected $reflectionService;
+
+    /**
+     * @var \Neos\Flow\ObjectManagement\ObjectManagerInterface
+     * @Flow\Inject
+     */
+    protected $objectManager;
 
     protected function resolveView()
     {
@@ -57,6 +71,22 @@ trait BaseControllerTrait
         throw new MissingModelTypeException('Method getModelType() must be implemented in class ' . get_class($this) . '.', 1452714184);
     }
 
+    /**
+     * @return RepositoryInterface|null
+     */
+    protected function getRepository()
+    {
+        $possibleRepositories = $this->reflectionService->getAllImplementationClassNamesForInterface(RepositoryInterface::class);
+
+        foreach ($possibleRepositories as $possibleRepositoryClassName) {
+            /* @var RepositoryInterface $repository */
+            $repository = $this->objectManager->get($possibleRepositoryClassName);
+            if ($repository->getEntityClassName() === $this->getModelType()) {
+                return $repository;
+            }
+        }
+        return null;
+    }
 
     protected function initializeView(\Neos\Flow\Mvc\View\ViewInterface $view)
     {
