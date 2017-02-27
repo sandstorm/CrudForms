@@ -13,8 +13,8 @@ trait BaseControllerTrait
     protected function resolveView()
     {
         // DEFAULT case for Flow Applications using Fluid; or for usage inside Neos plugins.
-        if ($this->defaultViewObjectName === TemplateView::class) {
-            $this->defaultViewObjectName = 'Sandstorm\CrudForms\View\ExtendedTemplateView';
+        if ($this->defaultViewImplementation === TemplateView::class) {
+            $this->defaultViewImplementation = 'Sandstorm\CrudForms\View\ExtendedTemplateView';
         }
 
         $result = parent::resolveView();
