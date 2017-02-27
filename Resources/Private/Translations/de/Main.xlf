@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="" product-name="Sandstorm.CrudForms" source-language="en" datatype="plaintext">
+		<body>
+			<trans-unit id="edit" xml:space="preserve">
+				<source>Bearbeiten</source>
+			</trans-unit>
+			<trans-unit id="delete" xml:space="preserve">
+				<source>Löschen</source>
+			</trans-unit>
+			<trans-unit id="delete.confirmation.header" xml:space="preserve">
+				<source>Diesen Eintrag wirklich löschen?</source>
+			</trans-unit>
+			<trans-unit id="delete.confirmation.body" xml:space="preserve">
+				<source>Dieser Eintrag wird gelöscht und kann nicht wiederhergestellt werden. Wollen Sie fortfahren?</source>
+			</trans-unit>
+			<trans-unit id="delete.confirmation.confirm" xml:space="preserve">
+				<source>Löschen!</source>
+			</trans-unit>
+			<trans-unit id="cancel" xml:space="preserve">
+				<source>Abbrechen</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
