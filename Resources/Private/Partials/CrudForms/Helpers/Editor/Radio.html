@@ -2,6 +2,6 @@
 
 <f:for each="{field.options}" as="option">
     <br />
-        <f:form.radio property="{field.property}" value="{option.value}" />
+        <f:form.radio property="{field.property}" value="{option.value}" class="{formFieldClass}" />
         {option.label}
 </f:for>

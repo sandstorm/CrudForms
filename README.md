@@ -73,6 +73,7 @@ The editor has the following template variables available:
 - field: the meta-model for the currently edited field - it is an array with the following properties:
   - all properties of the Crud\FormField annotation (see above)
   - property: the name of the property to be edited.
+- formFieldClass: this CSS class name should be used as CSS class name for the form field itself
 
 Example: 
 
