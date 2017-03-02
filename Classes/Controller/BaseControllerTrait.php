@@ -1,6 +1,7 @@
 <?php
 namespace Sandstorm\CrudForms\Controller;
 
+use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Persistence\RepositoryInterface;
 use Neos\FluidAdaptor\View\TemplateView;
 use Neos\Fusion\View\FusionView;
@@ -13,13 +14,7 @@ trait BaseControllerTrait
 {
 
     /**
-     * @var \Neos\Flow\Reflection\ReflectionService
-     * @Flow\Inject
-     */
-    protected $reflectionService;
-
-    /**
-     * @var \Neos\Flow\ObjectManagement\ObjectManagerInterface
+     * @var ObjectManagerInterface
      * @Flow\Inject
      */
     protected $objectManager;
@@ -65,6 +60,9 @@ trait BaseControllerTrait
      *   return Address::class;
      * }
      * ```
+     *
+     * @return string
+     * @throws MissingModelTypeException
      */
     protected function getModelType()
     {
@@ -76,16 +74,38 @@ trait BaseControllerTrait
      */
     protected function getRepository()
     {
-        $possibleRepositories = $this->reflectionService->getAllImplementationClassNamesForInterface(RepositoryInterface::class);
+        $entityClassNameToRepositoryClassNameMapping = self::getEntityClassNameToRepositoryClassNameMapping($this->objectManager);
 
-        foreach ($possibleRepositories as $possibleRepositoryClassName) {
-            /* @var RepositoryInterface $repository */
-            $repository = $this->objectManager->get($possibleRepositoryClassName);
-            if ($repository->getEntityClassName() === $this->getModelType()) {
-                return $repository;
-            }
+        if (isset($entityClassNameToRepositoryClassNameMapping[$this->getModelType()])) {
+            return $this->objectManager->get($entityClassNameToRepositoryClassNameMapping[$this->getModelType()]);
         }
+
         return null;
+    }
+
+    /**
+     * @Flow\CompileStatic
+     *
+     * @param ObjectManagerInterface $objectManager
+     * @return array
+     */
+    static protected function getEntityClassNameToRepositoryClassNameMapping(ObjectManagerInterface $objectManager)
+    {
+        $reflectionService = $objectManager->get('Neos\Flow\Reflection\ReflectionService');
+
+        $repositoryClassNames = $reflectionService->getAllImplementationClassNamesForInterface(RepositoryInterface::class);
+        $repositoryClassNameByEntityClassName = [];
+
+        foreach ($repositoryClassNames as $className) {
+            if (defined($className . '::ENTITY_CLASSNAME')) {
+                $entityClassName = $className::ENTITY_CLASSNAME;
+            } else {
+                $entityClassName = preg_replace(['/\\\Repository\\\/', '/Repository$/'], ['\\Model\\', ''], $className);
+            }
+            $repositoryClassNameByEntityClassName[$entityClassName] = $className;
+        }
+
+        return $repositoryClassNameByEntityClassName;
     }
 
     protected function initializeView(\Neos\Flow\Mvc\View\ViewInterface $view)
