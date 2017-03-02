@@ -20,6 +20,14 @@ abstract class AbstractDefinitionViewHelper extends AbstractViewHelper
      */
     protected $reflectionService;
 
+    /**
+     * @var array
+     */
+    protected $ignorePropertiesWithAnnotations = [
+        Flow\Transient::class,
+        Flow\Inject::class,
+        Flow\InjectConfiguration::class
+    ];
 
     /**
      * @param string $model
@@ -44,7 +52,9 @@ abstract class AbstractDefinitionViewHelper extends AbstractViewHelper
             if ($propertyName === 'Persistence_Object_Identifier') {
                 continue;
             }
-            if ($this->reflectionService->getPropertyAnnotation($model, $propertyName, Flow\Transient::class)) {
+
+            $invalidAnnotations = array_intersect($this->getAnnotationClassNames($model, $propertyName), $this->ignorePropertiesWithAnnotations);
+            if (count($invalidAnnotations) > 0) {
                 continue;
             }
 
@@ -84,6 +94,12 @@ abstract class AbstractDefinitionViewHelper extends AbstractViewHelper
         }
 
         return (new PositionalArraySorter($fields))->toArray();
+    }
+
+    private function getAnnotationClassNames($model, $property)
+    {
+        $annotations = $this->reflectionService->getPropertyAnnotations($model, $property);
+        return array_keys($annotations);
     }
 
     private function addDefaultsToFields(&$fields, $propertyName)
