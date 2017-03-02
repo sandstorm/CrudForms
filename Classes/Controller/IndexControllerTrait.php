@@ -6,6 +6,9 @@ trait IndexControllerTrait
 {
     public function indexAction()
     {
-        $this->view->assign('objects', $this->persistenceManager->createQueryForType($this->getModelType())->execute());
+        $objects = $this->getRepository()
+            ? $this->getRepository()->findAll() : $this->persistenceManager->createQueryForType($this->getModelType())->execute();
+
+        $this->view->assign('objects', $objects);
     }
 }
