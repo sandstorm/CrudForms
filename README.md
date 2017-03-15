@@ -53,6 +53,9 @@ In your Model, annotate the field using the `@Crud\FormField` annotation, which 
 - `editor`: configure a different editor for the forms; see below for a more detailed description.
 - `options`: specify option values for e.g. radio-buttons or drop-down lists
 - `repository`: specify a repository to retrieve option values from (format: full\repository\class\name[::methodName])
+- `configuration`: a generic array of configuration options, available everywhere for customizations. By the base classes, the following configuration options are supported:
+  - `formFieldWrapperClassName`: CSS class name to be applied to the wrapping element for each form field (to have field-specific classes)
+ 
 
 ## hiding properties from listing and forms, sorting them, labeling them
 

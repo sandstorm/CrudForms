@@ -2,7 +2,7 @@
 
 <fieldset>
     <f:for each="{fields}" as="field">
-        <div class="form-group{f:validation.ifHasErrors(for: 'object.{field.property}', then: ' has-danger')}">
+        <div class="form-group {field.configuration.formFieldWrapperClassName} {f:validation.ifHasErrors(for: 'object.{field.property}', then: ' has-danger')}">
             <label class="form-control-label">{field.label}</label>
             <f:if condition="{field.editor}">
                 <f:then>

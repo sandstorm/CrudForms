@@ -23,4 +23,7 @@ final class FormField
     public $options;
 
     public $readonly = FALSE;
+
+    // generic "configuration" block to be used for specific templates
+    public $configuration;
 }

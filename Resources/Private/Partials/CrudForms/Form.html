@@ -2,7 +2,7 @@
 
 <fieldset>
     <f:for each="{fields}" as="field">
-        <div class="form-field{f:validation.ifHasErrors(for: 'object.{field.property}', then: ' has-error')}">
+        <div class="form-field  {field.configuration.formFieldWrapperClassName} {f:validation.ifHasErrors(for: 'object.{field.property}', then: ' has-error')}">
             <label>{field.label}
                 <f:if condition="{field.editor}">
                     <f:then>
