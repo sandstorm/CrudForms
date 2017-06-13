@@ -16,10 +16,10 @@ Features:
 
 This package is currently being maintained for Neos 2.3 LTS and Neos 3.x. It is stable, we use it in our projects.
 
-| Neos / Flow Version        | Sandstorm.CrudForms Version         | Maintained |
-|----------------------------|----------------------------------|------------|
-| Neos 3.x, Flow 4.x         | master                            | Yes        |
-| Neos 2.3 LTS, Flow 3.3 LTS | 1.x                        | Yes        |
+| Neos / Flow Version        | Sandstorm.CrudForms Version | Maintained |
+|----------------------------|-----------------------------|------------|
+| Neos 3.x, Flow 4.x         | 2.x                         | Yes        |
+| Neos 2.3 LTS, Flow 3.3 LTS | 1.x                         | Yes        |
 
 
 # Usage (Kickstart)
@@ -138,7 +138,7 @@ This partial has the current object available as `object`.
 
 # API
 
-He API is made of two parts - a "public" API, and an "internal" API:
+The API is made of two parts - a "public" API, and an "internal" API:
 
 You will use the public API only as long as you do not need to implement an additional base template for Form and Listing. In case you need to do this, you will rely on the "internal" API.
 
