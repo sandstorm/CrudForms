@@ -25,14 +25,14 @@
 						<f:if condition="{crud:internal.actionExists(action: 'edit')}">
 							<f:link.action action="edit" arguments="{object: singleObject}" class="neos-button neos-button-primary"
 										   title="{f:translate(package:'Sandstorm.CrudForms', id:'edit')}" additionalAttributes="{data-neos-toggle: 'tooltip'}">
-								<i class="icon-pencil icon-white"></i>
+								<i class="icon-pencil icon-white fas fa-pencil-alt"></i>
 							</f:link.action>
 						</f:if>
 
 						<f:if condition="{crud:internal.actionExists(action: 'remove')}">
 							<button class="neos-button neos-button-danger" title="{f:translate(package:'Sandstorm.CrudForms', id:'delete')}" data-toggle="modal"
 									href="#recipient-{index}" data-neos-toggle="tooltip">
-								<i class="icon-trash icon-white"></i>
+								<i class="icon-trash icon-white fas fa-trash"></i>
 							</button>
 							<div class="neos-hide" id="recipient-{index}">
 								<div class="neos-modal-centered">
