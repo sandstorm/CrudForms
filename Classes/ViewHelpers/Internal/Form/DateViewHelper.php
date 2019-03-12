@@ -22,25 +22,23 @@ class DateViewHelper extends TextfieldViewHelper
         // HINT: we use a format compatible with the input type Date
         $this->registerArgument('format', 'string', 'A Format string compatible with the DateTimeConverter.', FALSE, 'MULTIPLE');
     }
-
+    
     /**
      * Renders the textfield.
      *
-     * @param boolean $required If the field is required or not
-     * @param string $type
      * @return string
      * @api
      */
-    public function render($required = FALSE, $type = 'text')
+    public function render()
     {
+        $this->tag->addAttribute('type', 'date');
 
-        $content = parent::render($required, 'date');
+        $content = parent::render();
 
         $content .= '<input type="hidden" name="' . $this->prefixFieldName(parent::getNameWithoutPrefix()) . '[dateFormat]" value="' . htmlspecialchars($this->arguments['format']) . '" />';
 
         return $content;
     }
-
 
     protected function getNameWithoutPrefix()
     {
