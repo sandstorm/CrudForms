@@ -45,6 +45,10 @@ class DateViewHelper extends TextfieldViewHelper
         return parent::getNameWithoutPrefix() . '[date]';
     }
 
+    /**
+     * @param bool $ignoreSubmittedFormData
+     * @return mixed|null
+     */
     protected function getValueAttribute($ignoreSubmittedFormData = FALSE)
     {
         $value = parent::getValueAttribute($ignoreSubmittedFormData);
