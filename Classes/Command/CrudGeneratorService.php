@@ -4,6 +4,7 @@ namespace Sandstorm\CrudForms\Command;
 
 
 use Neos\Flow\Package\Package;
+use Neos\Flow\Package\PackageManager;
 use Neos\Utility\Files;
 use Neos\FluidAdaptor\View\StandaloneView;
 use Neos\Flow\Annotations as Flow;
@@ -14,7 +15,7 @@ class CrudGeneratorService
 
     /**
      * @Flow\Inject
-     * @var \Neos\Flow\Package\PackageManagerInterface
+     * @var PackageManager
      */
     protected $packageManager;
 
@@ -22,7 +23,6 @@ class CrudGeneratorService
      * @var array
      */
     protected $generatedFiles = array();
-
 
     /**
      * Generate a controller with the given name for the given package
@@ -33,6 +33,7 @@ class CrudGeneratorService
      * @param string $modelClassName The name of the model to base the controler on
      * @param boolean $overwrite Overwrite any existing files?
      * @return array An array of generated filenames
+     * @throws \Neos\FluidAdaptor\Exception
      */
     public function generateCrudController($packageKey, $subpackage, $controllerName, $modelClassName, $overwrite = FALSE)
     {

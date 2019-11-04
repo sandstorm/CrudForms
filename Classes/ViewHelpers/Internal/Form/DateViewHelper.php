@@ -22,7 +22,7 @@ class DateViewHelper extends TextfieldViewHelper
         // HINT: we use a format compatible with the input type Date
         $this->registerArgument('format', 'string', 'A Format string compatible with the DateTimeConverter.', FALSE, 'MULTIPLE');
     }
-    
+
     /**
      * Renders the textfield.
      *
@@ -40,7 +40,7 @@ class DateViewHelper extends TextfieldViewHelper
         return $content;
     }
 
-    protected function getNameWithoutPrefix()
+    protected function getNameWithoutPrefix(): string
     {
         return parent::getNameWithoutPrefix() . '[date]';
     }

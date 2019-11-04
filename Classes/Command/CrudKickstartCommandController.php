@@ -3,6 +3,7 @@ namespace Sandstorm\CrudForms\Command;
 
 use Neos\Flow\Cli\CommandController;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Package\PackageManager;
 
 class CrudKickstartCommandController extends CommandController
 {
@@ -10,13 +11,13 @@ class CrudKickstartCommandController extends CommandController
 
     /**
      * @Flow\Inject
-     * @var \Neos\Flow\Package\PackageManagerInterface
+     * @var PackageManager
      */
     protected $packageManager;
 
     /**
      * @Flow\Inject
-     * @var \Sandstorm\CrudForms\Command\CrudGeneratorService
+     * @var CrudGeneratorService
      */
     protected $crudGeneratorService;
 
