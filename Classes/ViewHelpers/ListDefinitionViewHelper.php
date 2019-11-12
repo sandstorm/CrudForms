@@ -3,17 +3,33 @@
 namespace Sandstorm\CrudForms\ViewHelpers;
 
 use Neos\Flow\Annotations as Flow;
+use Neos\FluidAdaptor\Core\ViewHelper\Exception;
+use Sandstorm\CrudForms\Exception\MissingModelTypeException;
 
 class ListDefinitionViewHelper extends AbstractDefinitionViewHelper
 {
 
     /**
-     * @param mixed $objects
-     * @param string $model the model class name
-     * @param object $context an arbitrary object which is available in all actions and nested functionality
+     * @return void
+     * @throws Exception
      */
-    public function render($objects, $model, $context = null)
+    public function initializeArguments()
     {
+        $this->registerArgument('objects', 'mixed', 'array of objects', true);
+        $this->registerArgument('model', 'string', 'the model class name', true);
+        $this->registerArgument('context', 'object', 'n arbitrary object which is available in all actions and nested functionality', false, null);
+    }
+
+    /**
+     * @return array
+     * @throws MissingModelTypeException
+     */
+    public function render()
+    {
+        $objects = $this->arguments['objects'];
+        $model = $this->arguments['model'];
+        $context = $this->arguments['context'];
+
         $fields = $this->getProperties($model, $context);
 
 

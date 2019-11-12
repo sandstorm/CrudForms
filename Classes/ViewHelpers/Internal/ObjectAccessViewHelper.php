@@ -13,10 +13,20 @@ class ObjectAccessViewHelper extends AbstractViewHelper
 {
 
     /**
-     * @param string $property
+     * @return void
+     * @throws \Neos\FluidAdaptor\Core\ViewHelper\Exception
      */
-    public function render($property)
+    public function initializeArguments()
     {
+        $this->registerArgument('property', 'string', 'property', true);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function render()
+    {
+        $property = $this->arguments['property'];
         $object = $this->renderChildren();
         return ObjectAccess::getPropertyPath($object, $property);
     }

@@ -8,12 +8,26 @@ class FormDefinitionViewHelper extends AbstractDefinitionViewHelper
 {
 
     /**
-     * @param mixed $objects
-     * @param string $model the model class name
-     * @param object $context an arbitrary object which is available in all actions and nested functionality
+     * @return void
+     * @throws \Neos\FluidAdaptor\Core\ViewHelper\Exception
      */
-    public function render($object, $model, $context = null)
+    public function initializeArguments()
     {
+        $this->registerArgument('object', 'object', 'object', true);
+        $this->registerArgument('model', 'string', 'the model class name', true);
+        $this->registerArgument('context', 'object', 'n arbitrary object which is available in all actions and nested functionality', false, null);
+    }
+
+    /**
+     * @return array
+     * @throws \Sandstorm\CrudForms\Exception\MissingModelTypeException
+     */
+    public function render()
+    {
+        $object = $this->arguments['object'];
+        $model = $this->arguments['model'];
+        $context = $this->arguments['context'];
+
         $fields = $this->getProperties($model, $context);
 
         $fields = array_filter($fields, function ($element) {
