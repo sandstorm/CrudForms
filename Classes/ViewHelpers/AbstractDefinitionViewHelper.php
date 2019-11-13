@@ -70,7 +70,7 @@ abstract class AbstractDefinitionViewHelper extends AbstractViewHelper
         }
 
         foreach (get_class_methods($model) as $methodName) {
-            if (substr($methodName, 0, 3) === 'get') {
+            if (strpos($methodName, 'get') === 0) {
                 $methodAnnotation = $this->reflectionService->getMethodAnnotation($model, $methodName, FormField::class);
 
                 if ($methodAnnotation) {

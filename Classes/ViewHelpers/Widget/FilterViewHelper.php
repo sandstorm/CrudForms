@@ -2,8 +2,12 @@
 namespace Sandstorm\CrudForms\ViewHelpers\Widget;
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Exception\InfiniteLoopException;
+use Neos\Flow\Mvc\Exception\StopActionException;
 use Neos\Flow\Persistence\QueryResultInterface;
 use Neos\FluidAdaptor\Core\Widget\AbstractWidgetViewHelper;
+use Neos\FluidAdaptor\Core\Widget\Exception\InvalidControllerException;
+use Neos\FluidAdaptor\Core\Widget\Exception\MissingControllerException;
 
 /**
  * This ViewHelper renders a Filter for a list of objects.
@@ -35,6 +39,10 @@ class FilterViewHelper extends AbstractWidgetViewHelper
      * @param string $filterProperty which property to filter on
      * @param string $filterPlaceholder placeholder to display in the filter input field
      * @return string
+     * @throws InfiniteLoopException
+     * @throws StopActionException
+     * @throws InvalidControllerException
+     * @throws MissingControllerException
      */
     public function render(QueryResultInterface $objects, $as, $filterProperty, $filterPlaceholder = NULL)
     {

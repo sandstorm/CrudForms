@@ -5,6 +5,7 @@ namespace Sandstorm\CrudForms\Aspect;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Aop\JoinPointInterface;
 use Neos\FluidAdaptor\View\Exception\InvalidTemplateResourceException;
+use Neos\Fusion\FusionObjects\Helpers\FluidView;
 
 /**
  * When using CrudForms in Fusion (NOT in a Neos Plugin); but directly Fusion & Flow; the partial path overriding
@@ -34,7 +35,7 @@ class PartialFallbackInFusionTemplateImplementation
         try {
             return $joinPoint->getAdviceChain()->proceed($joinPoint);
         } catch (InvalidTemplateResourceException $e) {
-            /* @var $fluidView \Neos\Fusion\FusionObjects\Helpers\FluidView */
+            /* @var FluidView $fluidView */
             $fluidView = $joinPoint->getProxy();
 
             $partialRootPathBefore = $fluidView->getPartialRootPath();

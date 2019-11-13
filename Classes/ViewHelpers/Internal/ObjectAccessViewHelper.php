@@ -2,6 +2,7 @@
 
 namespace Sandstorm\CrudForms\ViewHelpers\Internal;
 
+use Neos\FluidAdaptor\Core\ViewHelper\Exception;
 use Neos\Utility\ObjectAccess;
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
 
@@ -14,7 +15,7 @@ class ObjectAccessViewHelper extends AbstractViewHelper
 
     /**
      * @return void
-     * @throws \Neos\FluidAdaptor\Core\ViewHelper\Exception
+     * @throws Exception
      */
     public function initializeArguments()
     {

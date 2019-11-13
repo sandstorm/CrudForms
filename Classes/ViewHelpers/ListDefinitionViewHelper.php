@@ -33,7 +33,7 @@ class ListDefinitionViewHelper extends AbstractDefinitionViewHelper
         $fields = $this->getProperties($model, $context);
 
 
-        $fields = array_filter($fields, function ($element) {
+        $fields = array_filter($fields, static function ($element) {
             return $element['visible'] && $element['visibleInOverview'];
         });
 

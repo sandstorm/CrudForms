@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 
 class CollectionAdjustmentUtility
 {
-    static public function similarize(Collection $target, Collection $source)
+    public static function similarize(Collection $target, Collection $source)
     {
         foreach ($target as $element) {
             if (!$source->contains($element)) {

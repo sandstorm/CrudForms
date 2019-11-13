@@ -2,9 +2,7 @@
 
 namespace Sandstorm\CrudForms\ViewHelpers\Internal\Form;
 
-use Neos\Utility\ObjectAccess;
-use Neos\Utility\TypeHandling;
-use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
+use Neos\FluidAdaptor\Core\ViewHelper\Exception;
 use Neos\FluidAdaptor\ViewHelpers\Form\TextfieldViewHelper;
 
 class DateViewHelper extends TextfieldViewHelper
@@ -14,6 +12,7 @@ class DateViewHelper extends TextfieldViewHelper
      * Initialize the arguments.
      *
      * @return void
+     * @throws Exception
      * @api
      */
     public function initializeArguments()

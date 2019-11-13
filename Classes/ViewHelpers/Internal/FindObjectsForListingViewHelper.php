@@ -3,12 +3,13 @@
 namespace Sandstorm\CrudForms\ViewHelpers\Internal;
 
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
+use Neos\FluidAdaptor\Core\ViewHelper\Exception;
 
 class FindObjectsForListingViewHelper extends AbstractViewHelper
 {
     /**
      * @return void
-     * @throws \Neos\FluidAdaptor\Core\ViewHelper\Exception
+     * @throws Exception
      */
     public function initializeArguments()
     {

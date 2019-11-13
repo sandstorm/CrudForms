@@ -28,8 +28,8 @@ class ExtendedDateTimeConverter extends DateTimeConverter
             }
 
             return $result;
-        } else {
-            return parent::convertFrom($source, $targetType, $convertedChildProperties, $configuration);
         }
+
+        return parent::convertFrom($source, $targetType, $convertedChildProperties, $configuration);
     }
 }

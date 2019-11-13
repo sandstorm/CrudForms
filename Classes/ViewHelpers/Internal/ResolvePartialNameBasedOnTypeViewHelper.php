@@ -12,7 +12,7 @@ class ResolvePartialNameBasedOnTypeViewHelper extends AbstractViewHelper
     {
         $value = $this->renderChildren();
         $type = str_replace('\\', '_', TypeHandling::getTypeForValue($value));
-        $type = ($type == "NULL" ? "Null" : $type);
+        $type = ($type === 'NULL' ? 'Null' : $type);
         return $type;
     }
 }

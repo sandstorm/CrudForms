@@ -3,13 +3,15 @@
 namespace Sandstorm\CrudForms\ViewHelpers;
 
 use Neos\Flow\Annotations as Flow;
+use Neos\FluidAdaptor\Core\ViewHelper\Exception;
+use Sandstorm\CrudForms\Exception\MissingModelTypeException;
 
 class FormDefinitionViewHelper extends AbstractDefinitionViewHelper
 {
 
     /**
      * @return void
-     * @throws \Neos\FluidAdaptor\Core\ViewHelper\Exception
+     * @throws Exception
      */
     public function initializeArguments()
     {
@@ -20,7 +22,7 @@ class FormDefinitionViewHelper extends AbstractDefinitionViewHelper
 
     /**
      * @return array
-     * @throws \Sandstorm\CrudForms\Exception\MissingModelTypeException
+     * @throws MissingModelTypeException
      */
     public function render()
     {
@@ -30,7 +32,7 @@ class FormDefinitionViewHelper extends AbstractDefinitionViewHelper
 
         $fields = $this->getProperties($model, $context);
 
-        $fields = array_filter($fields, function ($element) {
+        $fields = array_filter($fields, static function ($element) {
             return $element['visible'] && $element['visibleInForm'];
         });
 

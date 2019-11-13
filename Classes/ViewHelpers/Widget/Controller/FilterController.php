@@ -2,6 +2,7 @@
 namespace Sandstorm\CrudForms\ViewHelpers\Widget\Controller;
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Persistence\Exception\InvalidQueryException;
 use Neos\Flow\Persistence\QueryResultInterface;
 use Neos\FluidAdaptor\Core\Widget\AbstractWidgetController;
 
@@ -29,11 +30,12 @@ class FilterController extends AbstractWidgetController
 
     /**
      * @param string $filterValue
+     * @throws InvalidQueryException
      */
     public function indexAction($filterValue = '')
     {
         $filterValue = trim($filterValue);
-        
+
         $query = clone $this->objects->getQuery();
         $constraintSoFar = $query->getConstraint();
 
