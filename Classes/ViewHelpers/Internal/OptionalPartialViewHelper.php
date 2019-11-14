@@ -10,6 +10,9 @@ class OptionalPartialViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = FALSE;
 
+    /**
+     * @return mixed|void
+     */
     public function render()
     {
         try {

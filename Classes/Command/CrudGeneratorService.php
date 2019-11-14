@@ -3,7 +3,11 @@
 namespace Sandstorm\CrudForms\Command;
 
 
+use Neos\Flow\Package\Exception\UnknownPackageException;
 use Neos\Flow\Package\Package;
+use Neos\Flow\Package\PackageManager;
+use Neos\FluidAdaptor\Exception;
+use Neos\Utility\Exception\FilesException;
 use Neos\Utility\Files;
 use Neos\FluidAdaptor\View\StandaloneView;
 use Neos\Flow\Annotations as Flow;
@@ -14,7 +18,7 @@ class CrudGeneratorService
 
     /**
      * @Flow\Inject
-     * @var \Neos\Flow\Package\PackageManagerInterface
+     * @var PackageManager
      */
     protected $packageManager;
 
@@ -22,7 +26,6 @@ class CrudGeneratorService
      * @var array
      */
     protected $generatedFiles = array();
-
 
     /**
      * Generate a controller with the given name for the given package
@@ -33,6 +36,9 @@ class CrudGeneratorService
      * @param string $modelClassName The name of the model to base the controler on
      * @param boolean $overwrite Overwrite any existing files?
      * @return array An array of generated filenames
+     * @throws UnknownPackageException
+     * @throws Exception
+     * @throws FilesException
      */
     public function generateCrudController($packageKey, $subpackage, $controllerName, $modelClassName, $overwrite = FALSE)
     {
@@ -57,7 +63,7 @@ class CrudGeneratorService
 
         $fileContent = $view->render();
 
-        $subpackagePath = $subpackage != '' ? $subpackage . '/' : '';
+        $subpackagePath = $subpackage !== '' ? $subpackage . '/' : '';
         $controllerFilename = $controllerClassName . '.php';
 
         $controllerPath = $this->getNamespaceBaseDirectory($packageKey) . $subpackagePath . 'Controller/';
@@ -75,8 +81,11 @@ class CrudGeneratorService
      * @param string $subpackage An optional subpackage name
      * @param string $controllerName The name of the new controller
      * @param string $modelClassName The name of the model to base the controler on
+     * @param $actionName
      * @param boolean $overwrite Overwrite any existing files?
      * @return array An array of generated filenames
+     * @throws Exception
+     * @throws FilesException
      */
     public function generateCrudAction($packageKey, $subpackage, $controllerName, $modelClassName, $actionName, $overwrite = FALSE)
     {
@@ -92,7 +101,7 @@ class CrudGeneratorService
 
         $fileContent = '{namespace crud=Sandstorm\CrudForms\ViewHelpers}' . chr(10) . $view->render();
 
-        $subpackagePath = $subpackage != '' ? $subpackage . '/' : '';
+        $subpackagePath = $subpackage !== '' ? $subpackage . '/' : '';
         $this->generateFile('resource://' . $packageKey . '/Private/Templates/' . $subpackagePath . $controllerName . '/' . $actionName . '.html', $fileContent, $overwrite);
 
         return $this->generatedFiles;
@@ -106,14 +115,15 @@ class CrudGeneratorService
      * @param string $fileContent
      * @param boolean $force
      * @return void
+     * @throws FilesException
      */
     protected function generateFile($targetPathAndFilename, $fileContent, $force = FALSE)
     {
         if (!is_dir(dirname($targetPathAndFilename))) {
-            \Neos\Utility\Files::createDirectoryRecursively(dirname($targetPathAndFilename));
+            Files::createDirectoryRecursively(dirname($targetPathAndFilename));
         }
 
-        if (substr($targetPathAndFilename, 0, 11) === 'resource://') {
+        if (strpos($targetPathAndFilename, 'resource://') === 0) {
             list($packageKey, $resourcePath) = explode('/', substr($targetPathAndFilename, 11), 2);
             $relativeTargetPathAndFilename = $packageKey . '/Resources/' . $resourcePath;
         } elseif (strpos($targetPathAndFilename, 'Tests') !== FALSE) {
@@ -122,7 +132,7 @@ class CrudGeneratorService
             $relativeTargetPathAndFilename = substr($targetPathAndFilename, strrpos(substr($targetPathAndFilename, 0, strpos($targetPathAndFilename, 'Classes/') - 1), '/') + 1);
         }
 
-        if (!file_exists($targetPathAndFilename) || $force === TRUE) {
+        if ($force === true || !file_exists($targetPathAndFilename)) {
             file_put_contents($targetPathAndFilename, $fileContent);
             $this->generatedFiles[] = 'Created .../' . $relativeTargetPathAndFilename;
         } else {
@@ -130,16 +140,14 @@ class CrudGeneratorService
         }
     }
 
+    /**
+     * @param $packageKey
+     * @return string
+     * @throws UnknownPackageException
+     */
     private function getNamespaceBaseDirectory($packageKey)
     {
         $package = $this->packageManager->getPackage($packageKey);
-
-        if (in_array('psr-4', $package->getAutoloadTypes())) {
-            // WORKAROUND to support PSR4 properly
-            return Files::getNormalizedPath($package->getPackagePath() . '/Classes/');
-        } else {
-            return $package->getClassesNamespaceEntryPath();
-        }
-
+        return Files::getNormalizedPath($package->getPackagePath() . '/Classes/');
     }
 }

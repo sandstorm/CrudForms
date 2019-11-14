@@ -3,6 +3,10 @@ namespace Sandstorm\CrudForms\Command;
 
 use Neos\Flow\Cli\CommandController;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Package\Exception\UnknownPackageException;
+use Neos\Flow\Package\PackageManager;
+use Neos\FluidAdaptor\Exception;
+use Neos\Utility\Exception\FilesException;
 
 class CrudKickstartCommandController extends CommandController
 {
@@ -10,13 +14,13 @@ class CrudKickstartCommandController extends CommandController
 
     /**
      * @Flow\Inject
-     * @var \Neos\Flow\Package\PackageManagerInterface
+     * @var PackageManager
      */
     protected $packageManager;
 
     /**
      * @Flow\Inject
-     * @var \Sandstorm\CrudForms\Command\CrudGeneratorService
+     * @var CrudGeneratorService
      */
     protected $crudGeneratorService;
 
@@ -27,8 +31,10 @@ class CrudKickstartCommandController extends CommandController
      * @param string $packageKey The package key of the package for the new controller with an optional subpackage, (e.g. "MyCompany.MyPackage/Admin").
      * @param string $controllerName The name for the new controller. This may also be a comma separated list of controller names.
      * @param string $modelName The model class name. Either fully-qualified or assumed to be in $packageKey.
-     * @param boolean $override override generated classes?
-     * @return string
+     * @param bool $overwrite
+     * @throws UnknownPackageException
+     * @throws Exception
+     * @throws FilesException
      * @see neos.kickstart:kickstart:commandcontroller
      */
     public function crudControllerCommand($packageKey, $controllerName, $modelName, $overwrite = FALSE)
