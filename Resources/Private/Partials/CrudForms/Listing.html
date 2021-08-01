@@ -14,7 +14,8 @@
         <tr>
             <f:for each="{fields}" as="field">
                 <td>
-                    <f:render partial="CrudForms/Helpers/ListingType/{singleObject -> crud:internal.objectAccess(property: field.property) -> crud:internal.resolvePartialNameBasedOnType() -> f:format.case(mode: 'capital')}" arguments="{value: '{singleObject -> crud:internal.objectAccess(property: field.property)}'}"/>
+                    <f:render partial="CrudForms/Helpers/ListingType/{f:if(condition:field.listingType, then: field.listingType, else: '{singleObject -> crud:internal.objectAccess(property: field.property) -> crud:internal.resolvePartialNameBasedOnType()}') -> f:format.case(mode: 'capital')}"
+                              arguments="{value: '{singleObject -> crud:internal.objectAccess(property: field.property)}'}"/>
                 </td>
             </f:for>
             <td class="actions">

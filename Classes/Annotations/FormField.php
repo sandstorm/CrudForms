@@ -9,6 +9,7 @@ final class FormField
 
     public $label;
     public $editor;
+    public $listingType;
 
     public $position; // position string as understood by positional array sorter
 
