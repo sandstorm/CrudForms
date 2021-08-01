@@ -1,7 +1,7 @@
 {namespace crud=Sandstorm\CrudForms\ViewHelpers}
 <fieldset class="neos-span5">
     <f:for each="{fields}" as="field">
-        <div class="neos-control-group {field.configuration.formFieldWrapperClassName} {f:validation.ifHasErrors(for: 'object.{field.property}', then: ' has-error')}">
+        <div class="neos-control-group {field.configuration.formFieldWrapperClassName} {f:validation.ifHasErrors(for: 'object.{field.property}', then: ' neos-error')}">
             <label class="neos-control-label">{field.label}</label>
             <div class="neos-controls">
                 <f:if condition="{field.editor}">
@@ -12,8 +12,8 @@
                         <f:render partial="CrudForms/Helpers/Editor/String" arguments="{field: field, formFieldClass: 'neos-span12', object: object, value: '{object -> crud:internal.objectAccess(property: field.property)}'}"/>
                     </f:else>
                 </f:if>
+                <f:render partial="CrudForms/Helpers/FormFieldValidationResults" arguments="{fieldname: 'object.{field.property}'}"/>
             </div>
-            <f:render partial="CrudForms/Helpers/FormFieldValidationResults" arguments="{fieldname: 'object.{field.property}'}"/>
         </div>
     </f:for>
 </fieldset>
