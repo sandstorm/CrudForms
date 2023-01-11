@@ -84,7 +84,7 @@ trait BaseControllerTrait
     }
 
     /**
-     * @Flow\CompileStatic
+     * @Neos\Flow\Annotations\CompileStatic
      *
      * @param ObjectManagerInterface $objectManager
      * @return array
