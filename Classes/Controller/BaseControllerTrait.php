@@ -84,8 +84,6 @@ trait BaseControllerTrait
     }
 
     /**
-     * @Flow\CompileStatic
-     *
      * @param ObjectManagerInterface $objectManager
      * @return array
      */
