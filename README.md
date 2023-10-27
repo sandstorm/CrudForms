@@ -12,6 +12,14 @@ Features:
 - Extensible through conventions and partials
 - extensible for other frameworks
 
+# Installation
+
+The package can be installed as usual with composer:
+
+```bash
+composer require sandstorm/crudforms
+```
+
 # Compatibility and Maintenance
 
 This package is currently being maintained for Neos 2.3 LTS and Neos 3.x. It is stable, we use it in our projects.
@@ -56,13 +64,13 @@ In your Model, annotate the field using the `@Crud\FormField` annotation, which 
 - `repository`: specify a repository to retrieve option values from (format: full\repository\class\name[::methodName])
 - `configuration`: a generic array of configuration options, available everywhere for customizations. By the base classes, the following configuration options are supported:
 - `formFieldWrapperClassName`: CSS class name to be applied to the wrapping element for each form field (to have field-specific classes)
- 
+
 
 ## hiding properties from listing and forms, sorting them, labeling them
 
 Just use the `@CrudForms\FormField` annotation as follows:
 
-```
+```php
 @CrudForms\FormField(label="my label", visibleInOverview=false)
 ```
 
@@ -79,9 +87,9 @@ The editor has the following template variables available:
   - property: the name of the property to be edited.
 - formFieldClass: this CSS class name should be used as CSS class name for the form field itself
 
-Example: 
+Example:
 
-```
+```html
 <f:for each="{field.options}" as="option">
     <br />
         <f:form.radio property="{field.property}" value="{option.value}" />
@@ -154,7 +162,7 @@ This is important for version upgrades:
 - the method `protected function getModelType()` must be overridden in the `Controller`; it must return the class-name
   of the object this controller is responsible for.
 
-```
+```php
 use Sandstorm\CrudForms\Controller\CrudControllerTrait;
 class AddressController extends ActionController
 {
@@ -174,9 +182,9 @@ class AddressController extends ActionController
     - `CreateControllerTrait` creates new objects (`new` and `create` actions)
     - `UpdateControllerTrait` updates objects (`edit` and `update` actions)
     - `RemoveControllerTrait` deletes objects (`remove` actions)
-  
 
-```
+
+```php
 use Sandstorm\CrudForms\Controller\BaseControllerTrait;
 use Sandstorm\CrudForms\Controller\IndexControllerTrait;
 use Sandstorm\CrudForms\Controller\CreateControllerTrait;
@@ -186,7 +194,7 @@ use Sandstorm\CrudForms\Controller\RemoveControllerTrait;
 class AddressController extends ActionController
 {
     use BaseControllerTrait;
-    
+
     // here, you can remove certain trait imports and manually implement these actions.
     use IndexControllerTrait;
     use CreateControllerTrait;
