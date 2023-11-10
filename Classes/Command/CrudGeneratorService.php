@@ -33,7 +33,7 @@ class CrudGeneratorService
      * @param string $packageKey The package key of the controller's package
      * @param string $subpackage An optional subpackage name
      * @param string $controllerName The name of the new controller
-     * @param string $modelClassName The name of the model to base the controler on
+     * @param string $modelClassName The name of the model to base the controller on
      * @param boolean $overwrite Overwrite any existing files?
      * @return array An array of generated filenames
      * @throws UnknownPackageException
@@ -148,6 +148,6 @@ class CrudGeneratorService
     private function getNamespaceBaseDirectory($packageKey)
     {
         $package = $this->packageManager->getPackage($packageKey);
-        return Files::getNormalizedPath($package->getPackagePath() . '/Classes/');
+        return Files::getNormalizedPath($package->getPackagePath() . 'Classes/');
     }
 }
