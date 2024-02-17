@@ -56,6 +56,7 @@ In your Model, annotate the field using the `@Crud\FormField` annotation, which 
 - `repository`: specify a repository to retrieve option values from (format: full\repository\class\name[::methodName])
 - `configuration`: a generic array of configuration options, available everywhere for customizations. By the base classes, the following configuration options are supported:
 - `formFieldWrapperClassName`: CSS class name to be applied to the wrapping element for each form field (to have field-specific classes)
+- `required`: specify, if the form field is required. Supported editors are DateTime, Radio, String and TextArea.
  
 
 ## hiding properties from listing and forms, sorting them, labeling them

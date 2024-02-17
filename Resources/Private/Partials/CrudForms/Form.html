@@ -3,7 +3,7 @@
 <fieldset>
     <f:for each="{fields}" as="field">
         <div class="form-field  {field.configuration.formFieldWrapperClassName} {f:validation.ifHasErrors(for: 'object.{field.property}', then: ' has-error')}">
-            <label>{field.label}
+						<f:render partial="CrudForms/Helpers/RequiredFormFieldLabel" arguments="{field: field}"/>
                 <f:if condition="{field.editor}">
                     <f:then>
                         <f:render partial="CrudForms/Helpers/Editor/{field.editor}" arguments="{field: field, object: object, value: '{object -> crud:internal.objectAccess(property: field.property)}'}"/>
@@ -12,7 +12,6 @@
                         <f:render partial="CrudForms/Helpers/Editor/String" arguments="{field: field, object: object, value: '{object -> crud:internal.objectAccess(property: field.property)}'}"/>
                     </f:else>
                 </f:if>
-            </label>
             <f:render partial="CrudForms/Helpers/FormFieldValidationResults" arguments="{fieldname: 'object.{field.property}'}"/>
         </div>
     </f:for>
