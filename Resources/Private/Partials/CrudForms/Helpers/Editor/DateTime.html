@@ -5,6 +5,6 @@
         {value -> f:format.date()}
     </f:then>
     <f:else>
-        <crud:internal.form.date property="{field.property}" id="{field.property}" format="Y-m-d" class="{formFieldClass}"/>
+        <crud:internal.form.date required="{f:if(condition:field.required, then: 'required', else: '')}" property="{field.property}" id="{field.property}" format="Y-m-d" class="{formFieldClass}"/>
     </f:else>
 </f:if>
