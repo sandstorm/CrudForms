@@ -2,6 +2,6 @@
 
 <f:for each="{field.options}" as="option">
     <br />
-        <f:form.radio property="{field.property}" value="{option.value}" class="{formFieldClass}" />
+        <f:form.radio property="{field.property}" value="{option.value}" class="{formFieldClass}" additionalAttributes="{f:if(condition:field.required, then: '{required: \'required\'}', else: '')}"/>
         {option.label}
 </f:for>

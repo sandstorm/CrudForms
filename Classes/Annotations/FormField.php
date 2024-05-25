@@ -20,6 +20,8 @@ final class FormField
     // only makes sense if editor == SingleSelect
     public $repository;
 
+    public $required = FALSE;
+
     // Only makes sense if editor == Radio
     public $options;
 
