@@ -22,7 +22,11 @@ trait UpdateControllerTrait
     public function updateAction()
     {
         $object = $this->arguments['object']->getValue();
-        $this->persistenceManager->update($object);
+
+        $repository = $this->getRepository();
+        if (!is_null($repository)) {
+            $repository->update($object);
+        }
 
         if (method_exists($this, 'afterUpdateAction')) {
             $this->afterUpdateAction($object);

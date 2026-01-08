@@ -7,9 +7,7 @@ trait CreateControllerTrait
     /**
      * @return void
      */
-    public function newAction()
-    {
-    }
+    public function newAction() {}
 
     protected function initializeCreateAction()
     {
@@ -20,7 +18,10 @@ trait CreateControllerTrait
     {
         $object = $this->arguments['object']->getValue();
 
-        $this->persistenceManager->add($object);
+        $repository = $this->getRepository();
+        if (!is_null($repository)) {
+            $repository->add($object);
+        }
 
         if (method_exists($this, 'afterCreateAction')) {
             $this->afterCreateAction($object);

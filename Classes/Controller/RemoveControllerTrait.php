@@ -13,7 +13,10 @@ trait RemoveControllerTrait
     {
         $object = $this->arguments['object']->getValue();
 
-        $this->persistenceManager->remove($object);
+        $repository = $this->getRepository();
+        if (!is_null($repository)) {
+            $repository->remove($object);
+        }
 
         if (method_exists($this, 'afterRemoveAction')) {
             $this->afterRemoveAction($object);
@@ -21,5 +24,4 @@ trait RemoveControllerTrait
 
         $this->redirect('index');
     }
-
 }

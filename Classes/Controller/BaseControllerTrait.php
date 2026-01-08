@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandstorm\CrudForms\Controller;
 
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
@@ -9,6 +10,8 @@ use Neos\Utility\ObjectAccess;
 use Sandstorm\CrudForms\Exception\MissingModelTypeException;
 use Sandstorm\CrudForms\View\ExtendedTemplateView;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Mvc\View\ViewInterface;
 
 trait BaseControllerTrait
 {
@@ -19,14 +22,14 @@ trait BaseControllerTrait
      */
     protected $objectManager;
 
-    protected function resolveView()
+    protected function resolveView(ActionRequest $request): ViewInterface
     {
         // DEFAULT case for Flow Applications using Fluid; or for usage inside Neos plugins.
         if ($this->defaultViewImplementation === TemplateView::class) {
             $this->defaultViewImplementation = 'Sandstorm\CrudForms\View\ExtendedTemplateView';
         }
 
-        $result = parent::resolveView();
+        $result = parent::resolveView($request);
 
         // USE CASE: Fusion & Flow are used (standalone) AND no Fusion path exists for the controller/action, so the Fallback
         //           is triggered.
@@ -108,9 +111,8 @@ trait BaseControllerTrait
         return $repositoryClassNameByEntityClassName;
     }
 
-    protected function initializeView(\Neos\Flow\Mvc\View\ViewInterface $view)
+    protected function initializeView(ViewInterface $view)
     {
         $view->assign('model', $this->getModelType());
     }
-
 }
