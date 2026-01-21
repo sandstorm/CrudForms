@@ -15,8 +15,6 @@ Features:
 
 # Compatibility and Maintenance
 
-This package is currently being maintained for Neos 2.3 LTS and Neos 3.x. It is stable, we use it in our projects.
-
 | Neos / Flow Version | Sandstorm.CrudForms Version | Maintained |
 | ------------------- | --------------------------- | ---------- |
 | Neos 9.x, Flow 9.x  | 3.x                         | ✅         |
