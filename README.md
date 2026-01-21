@@ -3,6 +3,7 @@
 Create easy and extensible CRUD (Create, Read, Update, Delete) forms for Domain Models in Flow and Neos CMS. Customize them through domain model annotations.
 
 Features:
+
 - Listing Views as Table
 - New- and Update-Forms
 - Kickstarter for creating the controller and templates automatically
@@ -16,11 +17,10 @@ Features:
 
 This package is currently being maintained for Neos 2.3 LTS and Neos 3.x. It is stable, we use it in our projects.
 
-| Neos / Flow Version        | Sandstorm.CrudForms Version | Maintained |
-|----------------------------|-----------------------------|------------|
-| Neos 3.x, Flow 4.x         | 2.x                         | Yes        |
-| Neos 2.3 LTS, Flow 3.3 LTS | 1.x                         | Yes        |
-
+| Neos / Flow Version | Sandstorm.CrudForms Version | Maintained |
+| ------------------- | --------------------------- | ---------- |
+| Neos 9.x, Flow 9.x  | 3.x                         | ✅         |
+| Neos 3.x, Flow 4.x  | 2.x                         | ❌         |
 
 # Usage (Kickstart)
 
@@ -38,7 +38,7 @@ CrudForms is meant to be very heavily customizable; that's why it provides sever
 
 - A set of partials which provide the default rendering for the listing, the editing forms and the individual parts of each screen. Contrary to standard Flow, the partials can be overridden just by placing a partial with he same name in your local package.
 
-Note that you will *still* have a controller and a very bare-bones Fluid template in place; so there is a clear extension point which you can use to add custom functionality.
+Note that you will _still_ have a controller and a very bare-bones Fluid template in place; so there is a clear extension point which you can use to add custom functionality.
 
 ## Adjust individual fields
 
@@ -51,13 +51,12 @@ In your Model, annotate the field using the `@Crud\FormField` annotation, which 
 - `visibleInForm`: if FALSE, hides the field from the create and update forms.
 - `readonly`: if TRUE, only show the values, but do not make them editable.
 - `editor`: configure a different editor for the forms; see below for a more detailed description.
-- `listingType`:  override the type-name which is used to render this property in listings
+- `listingType`: override the type-name which is used to render this property in listings
 - `options`: specify option values for e.g. radio-buttons or drop-down lists
 - `repository`: specify a repository to retrieve option values from (format: full\repository\class\name[::methodName])
 - `configuration`: a generic array of configuration options, available everywhere for customizations. By the base classes, the following configuration options are supported:
 - `formFieldWrapperClassName`: CSS class name to be applied to the wrapping element for each form field (to have field-specific classes)
 - `required`: specify, if the form field is required. Supported editors are DateTime, Radio, String and TextArea.
- 
 
 ## hiding properties from listing and forms, sorting them, labeling them
 
@@ -80,7 +79,7 @@ The editor has the following template variables available:
   - property: the name of the property to be edited.
 - formFieldClass: this CSS class name should be used as CSS class name for the form field itself
 
-Example: 
+Example:
 
 ```
 <f:for each="{field.options}" as="option">
@@ -119,8 +118,6 @@ The `FieldGeneratorInterface` needs to return an array with property paths as ke
 
 Todo example
 Todo context
-
-
 
 ## Add content before/after listing of objects
 
@@ -170,12 +167,11 @@ class AddressController extends ActionController
 ```
 
 - alternatively, if only certain actions should be auto-generated, you can replace `use CrudControllerTrait` by the traits:
-    - `BaseControllerTrait` is always needed
-    - `IndexControllerTrait` contains the listing of objects (`index` action)
-    - `CreateControllerTrait` creates new objects (`new` and `create` actions)
-    - `UpdateControllerTrait` updates objects (`edit` and `update` actions)
-    - `RemoveControllerTrait` deletes objects (`remove` actions)
-  
+  - `BaseControllerTrait` is always needed
+  - `IndexControllerTrait` contains the listing of objects (`index` action)
+  - `CreateControllerTrait` creates new objects (`new` and `create` actions)
+  - `UpdateControllerTrait` updates objects (`edit` and `update` actions)
+  - `RemoveControllerTrait` deletes objects (`remove` actions)
 
 ```
 use Sandstorm\CrudForms\Controller\BaseControllerTrait;
@@ -187,7 +183,7 @@ use Sandstorm\CrudForms\Controller\RemoveControllerTrait;
 class AddressController extends ActionController
 {
     use BaseControllerTrait;
-    
+
     // here, you can remove certain trait imports and manually implement these actions.
     use IndexControllerTrait;
     use CreateControllerTrait;
@@ -216,7 +212,6 @@ The public template API contains:
 If you override the main Form.html and Listing, you rely on the private API, which means you have to call the correct ViewHelpers with the correct arguments, and trigger the rendering using correctly, just as it is done in the included Listing.html and Form.html.
 
 If you copy these templates to implement another CSS framework, please consider creating a pull request, so everybody can profit from this.
-
 
 # Next steps / possible further development
 
